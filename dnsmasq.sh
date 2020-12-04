@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PFM_GET_SIGNAL_VALUE="/home/pfm/get_signal_value.py"
-wifi_mode=`su pfm - -c ${PFM_GET_SIGNAL_VALUE} SIG_UPDATE_WIFI_MODE`
+wifi_mode=`su pfm - -c "${PFM_GET_SIGNAL_VALUE} 'SIG_UPDATE_WIFI_MODE'"`
 logger "Captive Portal check: PFM_SIGNAL Wifi Mode is ${wifi_mode}"
 
 current_wifi_mode=`grep "WiFi Device Current Mode" /home/pfm/pfm_conf/pfm_working.ini`
@@ -38,7 +38,7 @@ fi
 
 if test "${set_captive_portal}" = "yes"
 then
-    logger "captive portal mode activated params: $*"
+    logger "captive portal mode activated params: $* with --address=/#/10.42.0.1"
     /usr/sbin/dnsmasq.bin $* --address=/#/10.42.0.1
 else
     logger "access point mode activated params: $*"
