@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -f /usr/sbin/dnsmasq.bin ]; then
+    echo "/usr/sbin/dnsmasq.bin exists. Aborting."
+    exit 0
+fi
 mount -o rw,remount /
 cp -p /usr/sbin/dnsmasq /usr/sbin/dnsmasq.bin
 cp dnsmasq.sh /usr/sbin/dnsmasq
