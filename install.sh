@@ -12,6 +12,8 @@ echo "dnsmasq shell interceptor for NetworkManager installed"
 systemctl enable lighttpd
 echo "lighhtpd enabled"
 mount -o ro,remount /
-echo "lighhtpd started"
+su - pfm -c "mkdir -p /home/pfm/pfm_store/var/log/lighttpd"
+chown www-data /home/pfm/pfm_store/var/log/lighttpd
 systemctl start lighttpd
+echo "lighhtpd started"
 echo "delete /home/pfm/pfm_conf/dnsmasq.CAPTIVE_PORTAL to stop captive portal"
