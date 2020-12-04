@@ -15,6 +15,7 @@ mount -o ro,remount /
 su - pfm -c "mkdir -p /home/pfm/pfm_store/var/log/lighttpd"
 chown www-data /home/pfm/pfm_store/var/log/lighttpd
 su - pfm -c "cp -pr var/www /home/pfm/pfm_store/var"
+echo "example content loaded"
 systemctl start lighttpd
 echo "lighttpd started"
 echo "delete /home/pfm/pfm_conf/dnsmasq.CAPTIVE_PORTAL to stop captive portal"
