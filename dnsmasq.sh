@@ -38,8 +38,9 @@ fi
 
 if test "${set_captive_portal}" = "yes"
 then
-    logger "captive portal mode activated params: $* with --address=/#/10.42.0.1"
-    /usr/sbin/dnsmasq.bin $* --address=/#/10.42.0.1
+    cp_params="--address=/#/10.42.0.1 --dhcp-option=114,\"http://10.42.0.1/\" --dhcp-option=103,\"http://10.42.0.1/\""
+    logger "captive portal mode activated params: $* ${cp_params}"
+    /usr/sbin/dnsmasq.bin $* ${cp_params}
 else
     logger "access point mode activated params: $*"
     /usr/sbin/dnsmasq.bin $*
