@@ -9,6 +9,7 @@ cp dnsmasq.sh /usr/sbin/dnsmasq
 chmod a+x /usr/sbin/dnsmasq
 touch /home/pfm/pfm_conf/dnsmasq.CAPTIVE_PORTAL
 echo "dnsmasq shell interceptor for NetworkManager installed"
+sed -e 's#accesslog.filename = "/var/log/lighttpd/access.log"#accesslog.filename = "/home/pfm/pfm_store/var/log/lighttpd/access.log"#g' /etc/lighttpd/conf-available/10-accesslog.conf > /etc/lighttpd/conf-available/10-accesslog.conf
 systemctl enable lighttpd
 echo "lighhtpd enabled"
 
@@ -18,7 +19,7 @@ su - pfm -c "mkdir -p /home/pfm/pfm_store/var/www"
 chown www-data /home/pfm/pfm_store/var/log/lighttpd
 cp -pr var/www/* /home/pfm/pfm_store/var/www
 chown -R pfm:pfm /home/pfm/pfm_store/var/www
-sed -e 's#accesslog.filename = "/var/log/lighttpd/access.log"#accesslog.filename = "/home/pfm/pfm_store/var/log/lighttpd/access.log"#g' /etc/lighttpd/conf-available/10-accesslog.confsed -e s/pfm009.local/${HOSTNAME}.local/g var/www/html/index.html >/home/pfm/pfm_store/var/www/html/index.html
+sed -e s/pfm009.local/${HOSTNAME}.local/g var/www/html/index.html >/home/pfm/pfm_store/var/www/html/index.html
 sed -e s/pfm009.local/${HOSTNAME}.local/g var/www/html/index.php >/home/pfm/pfm_store/var/www/html/index.php
 echo "example content loaded"
 systemctl start lighttpd
