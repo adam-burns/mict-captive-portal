@@ -13,8 +13,10 @@ systemctl enable lighttpd
 echo "lighhtpd enabled"
 mount -o ro,remount /
 su - pfm -c "mkdir -p /home/pfm/pfm_store/var/log/lighttpd"
+su - pfm -c "mkdir -p /home/pfm/pfm_store/var/www"
 chown www-data /home/pfm/pfm_store/var/log/lighttpd
-su - pfm -c "cp -pr var/www /home/pfm/pfm_store/var"
+cp -pr var/www/* /home/pfm/pfm_store/var/www
+chown -R pfm:pfm /home/pfm/pfm_store/var/www
 sed -e s/pfm009.local/${HOSTNAME}.local/g var/www/html/index.html >/home/pfm/pfm_store/var/www/html/index.html
 sed -e s/pfm009.local/${HOSTNAME}.local/g var/www/html/index.php >/home/pfm/pfm_store/var/www/html/index.php
 echo "example content loaded"
