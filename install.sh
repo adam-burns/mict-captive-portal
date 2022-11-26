@@ -9,10 +9,10 @@ cp dnsmasq.sh /usr/sbin/dnsmasq
 chmod a+x /usr/sbin/dnsmasq
 touch /home/pfm/pfm_conf/dnsmasq.CAPTIVE_PORTAL
 echo "dnsmasq shell interceptor for NetworkManager installed"
-sed -e 's#accesslog.filename = "/var/log/lighttpd/access.log"#accesslog.filename = "/home/pfm/pfm_store/var/log/lighttpd/access.log"#g' /etc/lighttpd/conf-available/10-accesslog.conf > /etc/lighttpd/conf-available/10-accesslog.conf
-cd /etc/lighttpd/conf-enabled
-ln -s ../conf-available/10-accesslog.conf .
-cd -
+# sed -e 's#accesslog.filename = "/var/log/lighttpd/access.log"#accesslog.filename = "/home/pfm/pfm_store/var/log/lighttpd/access.log"#g' /etc/lighttpd/conf-available/10-accesslog.conf > /etc/lighttpd/conf-available/10-accesslog.conf
+# cd /etc/lighttpd/conf-enabled
+# ln -s ../conf-available/10-accesslog.conf .
+# cd -
 systemctl enable lighttpd
 echo "lighhtpd enabled"
 
